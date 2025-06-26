@@ -1,6 +1,7 @@
 import React from "react";
 import { hackathonData } from "./data";
 import "./hax.css";
+import { Link } from "react-router";
 
 export const Hackathon = () => {
   return (
@@ -9,9 +10,9 @@ export const Hackathon = () => {
         <p>Our Upcoming</p>
         <h1>HACKATHONS</h1>
         <div className="hcontainer">
-          {hackathonData.map((dat, index) => {
+          {[...hackathonData].reverse().map((dat, index) => {
             return (
-              <a href={`${dat.url}`} key={index}>
+              <Link to={dat.url} target="_blank" key={index}>
                 <div className="hcard" key={index}>
                   <div
                     className="pseud"
@@ -25,7 +26,7 @@ export const Hackathon = () => {
                     <div className="tex">
                       <p>{dat.hackDesc}</p>
                       <span>
-                        Status:`({dat.status})` date posted: {dat.date}
+                        Status: ({dat.status}) <br /> date posted: {dat.date}
                       </span>
                     </div>
                   </div>
@@ -33,7 +34,7 @@ export const Hackathon = () => {
                     <img src={dat.img} alt={dat.hackTitle} />
                   </div>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>
